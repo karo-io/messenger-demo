@@ -20,6 +20,9 @@ class MessageHandler implements MessageHandlerInterface
     public function __invoke(StandardMessage $message)
     {
         $diff = (new \DateTime())->diff($message->getCreatedDate());
-        $this->logger->info('Handled msg after '.$diff->format('%s'));
+        $this->logger->info('Starting msg after '.$diff->format('%m:%s'));
+        $delay = rand(5, 30);
+        $this->logger->info('Gonna need '.$delay.' for this job');
+        sleep($delay);
     }
 }
