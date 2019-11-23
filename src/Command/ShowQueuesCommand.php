@@ -25,10 +25,9 @@ class ShowQueuesCommand extends Command
      */
     private $locator;
 
-    public function __construct(string $name = null, MessageBusInterface $bus, ReceiverLocator $locator)
+    public function __construct(string $name = null, ReceiverLocator $locator)
     {
         parent::__construct($name);
-        $this->bus = $bus;
         $this->locator = $locator;
     }
 
@@ -41,26 +40,29 @@ class ShowQueuesCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        while (true) {
+        while (1) {
             // clear screen
             $io->write(sprintf("\033\143"));
             $io->title('Transport Queue Length');
             $io->text((new \DateTime('now'))->format('Y-m-d H:i:s'));
 
-            $receivers = $this->locator->getReceivers();
+            $receivers = $this->locator->getReceiverMapping();
+            $names = $this->locator->getReceiverNames();
             $rows = [];
-            /** @var ReceiverInterface $receiver */
-            foreach ($receivers as $name => $receiver) {
+            foreach ($names as $id => $name) {
+                /** @var ReceiverInterface $receiver */
+                $receiver = $receivers[$id];
                 $queueLength = -1;
                 if ($receiver instanceof MessageCountAwareInterface) {
                     /** @var MessageCountAwareInterface $receiver */
                     $queueLength = $receiver->getMessageCount();
                 }
-                $rows[] = [get_class($receiver), $queueLength];
+                $rows[] = [$name.'('.get_class($receiver).')', $queueLength];
             }
             $io->table(['Transport', 'Queue Length'], $rows);
 
             sleep(1);
+
         }
 
         return 0;

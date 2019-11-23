@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\DependencyInjection\ReceiverLocatorPass;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
@@ -28,6 +29,12 @@ class Kernel extends BaseKernel
     public function getProjectDir(): string
     {
         return \dirname(__DIR__);
+    }
+
+    protected function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new ReceiverLocatorPass());
+        parent::build($container);
     }
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
