@@ -58,7 +58,7 @@ class ShowQueuesCommand extends Command
                     /** @var MessageCountAwareInterface $receiver */
                     $queueLength = $receiver->getMessageCount();
                 }
-                $rows[] = [$name.'('.get_class($receiver).')', $queueLength];
+                $rows[] = [$name, $queueLength];
             }
             $io->table(['Transport', 'Queue Length'], $rows);
 
