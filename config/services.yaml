@@ -28,7 +28,6 @@ services:
 
     messenger-monitor.receiver-locator:
         class: App\Message\ReceiverLocator
-        arguments: [!tagged messenger.receiver]
 
     App\Message\ReceiverLocator:
         alias: 'messenger-monitor.receiver-locator'

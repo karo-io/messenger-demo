@@ -29,6 +29,8 @@ class ShowQueuesCommand extends Command
     {
         parent::__construct($name);
         $this->locator = $locator;
+
+        $this->receivers = $this->locator->getReceiverMapping();
     }
 
     protected function configure()
@@ -47,11 +49,10 @@ class ShowQueuesCommand extends Command
             $io->text((new \DateTime('now'))->format('Y-m-d H:i:s'));
 
             $receivers = $this->locator->getReceiverMapping();
-            $names = $this->locator->getReceiverNames();
             $rows = [];
-            foreach ($names as $id => $name) {
+            foreach ($receivers as $name => $receiver) {
                 /** @var ReceiverInterface $receiver */
-                $receiver = $receivers[$id];
+                $receiver = $receivers[$name];
                 $queueLength = -1;
                 if ($receiver instanceof MessageCountAwareInterface) {
                     /** @var MessageCountAwareInterface $receiver */

@@ -3,26 +3,17 @@
 
 namespace App\Message;
 
+use Symfony\Component\Console\Exception\RuntimeException;
 
 class ReceiverLocator
 {
-    private $receivers;
-    private $receiverMapping;
+    private $receiverLocator;
     private $receiverNames;
 
-    public function __construct($receivers, $receiverMapping, $receiverNames)
+    public function __construct($receiverLocator, $receiverNames)
     {
-        $this->receivers = $receivers;
-        $this->receiverMapping = $receiverMapping;
+        $this->receiverLocator = $receiverLocator;
         $this->receiverNames = $receiverNames;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getReceivers()
-    {
-        return $this->receivers;
     }
 
     /**
@@ -30,14 +21,20 @@ class ReceiverLocator
      */
     public function getReceiverMapping()
     {
-        return $this->receiverMapping;
-    }
+        $receivers = [];
+        foreach ($this->receiverNames as $receiverName) {
+            if (!$this->receiverLocator->has($receiverName)) {
+                $message = sprintf('The receiver "%s" does not exist.', $receiverName);
+                if ($this->receiverNames) {
+                    $message .= sprintf(' Valid receivers are: %s.', implode(', ', $this->receiverNames));
+                }
 
-    /**
-     * @return mixed
-     */
-    public function getReceiverNames()
-    {
-        return $this->receiverNames;
+                throw new RuntimeException($message);
+            }
+
+            $receivers[$receiverName] = $this->receiverLocator->get($receiverName);
+        }
+
+        return $receivers;
     }
 }
