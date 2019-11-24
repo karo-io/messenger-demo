@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Command;
+namespace KaroIO\MessengerMonitor\Command;
 
 
-use App\Message\ReceiverLocator;
+use KaroIO\MessengerMonitor\Locator\ReceiverLocator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -13,9 +13,9 @@ use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Transport\Receiver\MessageCountAwareInterface;
 use Symfony\Component\Messenger\Transport\Receiver\ReceiverInterface;
 
-class ShowQueuesCommand extends Command
+class MonitorCommand extends Command
 {
-    protected static $defaultName = 'app:show';
+    protected static $defaultName = 'messenger:monitor';
     /**
      * @var MessageBusInterface
      */

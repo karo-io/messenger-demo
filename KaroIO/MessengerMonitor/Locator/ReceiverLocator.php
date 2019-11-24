@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Message;
+namespace KaroIO\MessengerMonitor\Locator;
 
 use Symfony\Component\Console\Exception\RuntimeException;
 
