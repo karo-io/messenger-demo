@@ -17,7 +17,9 @@ class ReceiverLocator
     }
 
     /**
-     * @return mixed
+     * Key-Value array of receiver name to receiver object
+     *
+     * @return array
      */
     public function getReceiverMapping()
     {
