@@ -11,7 +11,17 @@
         "symfony/framework-bundle": "5.0.*",
         "symfony/messenger": "5.0.*",
         "symfony/orm-pack": "^1.0",
-        "symfony/yaml": "5.0.*"
+        "symfony/yaml": "5.0.*",
+        "karo/messenger-monitor": "@dev"
+    },
+    "repositories": {
+        "karo/messenger-monitor": {
+            "type": "path",
+            "url": "/home/pdietrich/messenger-monitor",
+            "options": {
+                "symlink": true
+            }
+        }
     },
     "require-dev": {
     },
@@ -23,8 +33,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
-            "KaroIO\\": "KaroIO/"
+            "App\\": "src/"
         }
     },
     "autoload-dev": {

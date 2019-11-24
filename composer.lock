@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cbb2bf4aaf23cadb03a095c69678a78d",
+    "content-hash": "d9ed889afa8f0aab8a31a10c232d400f",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1190,6 +1190,37 @@
                 "sql"
             ],
             "time": "2014-01-12T16:20:24+00:00"
+        },
+        {
+            "name": "karo/messenger-monitor",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "/home/pdietrich/messenger-monitor",
+                "reference": "3f7dfc62042aa4129e74af02807d66252c227afc"
+            },
+            "require": {
+                "symfony/framework-bundle": "^5.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Karo\\MessengerMonitor\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Dietrich",
+                    "email": "xosofox@gmail.com"
+                }
+            ],
+            "description": "Symfony bundle for information about your Messenger queues and transports",
+            "transport-options": {
+                "symlink": true
+            }
         },
         {
             "name": "ocramius/package-versions",
@@ -3443,7 +3474,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "karo/messenger-monitor": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

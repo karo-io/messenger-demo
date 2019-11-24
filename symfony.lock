@@ -78,6 +78,9 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "karo/messenger-monitor": {
+        "version": "dev-master"
+    },
     "ocramius/package-versions": {
         "version": "1.4.2"
     },
