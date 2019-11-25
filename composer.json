@@ -12,10 +12,10 @@
         "symfony/messenger": "5.0.*",
         "symfony/orm-pack": "^1.0",
         "symfony/yaml": "5.0.*",
-        "karo/messenger-monitor": "@dev"
+        "karo-io/messenger-monitor": "@dev"
     },
     "repositories": {
-        "karo/messenger-monitor": {
+        "karo-io/messenger-monitor": {
             "type": "path",
             "url": "/home/pdietrich/messenger-monitor",
             "options": {
